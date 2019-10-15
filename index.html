@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Etch-a-Sketch</title>
+        <link rel="stylesheet"  type="text/css" href="style.css">
+    </head>
+    <body>
+        <h1>Grid</h1>
+        <button id="erase">Erase</button>
+        <div id="container" style="display: grid"></div>
+        <script>
+            // JaveScript goes here!
+            let across = 50;
+            let down = 50;
+            let container = document.getElementById('container');
+            boxheight = container.offsetWidth / across;
+            container.style.gridTemplateColumns = `repeat(${across}, 1fr)`;
+            container.style.gridTemplateRows = `repeat(${across}, 1fr)`;
+            let divs = [];
+            
+            for (let i=1; i <= down; i++) {
+                
+                for (let j=1; j <= across; j++) {
+                    
+                    let temp = document.createElement("div");
+                    temp.style.borderStyle = "solid";
+                    temp.style.borderWidth = ".25px";
+                    temp.style.height = `${boxheight}px`;
+                    temp.style.gridArea = `${j} / ${i} / span 1 / span 1`;
+                    temp.id = `row${j}col${i}`;
+                    
+                    temp.addEventListener("mouseenter", function(e) {
+                        temp.classList.add("filled")
+                    });
+
+
+                    container.appendChild(temp);
+                    
+                }
+            };
+            
+            erase = document.getElementById("erase");
+            erase.onclick = function(){
+                //remove all filled classes
+            };
+
+
+            
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
