@@ -11,40 +11,63 @@
         <div id="container" style="display: grid"></div>
         <script>
             // JaveScript goes here!
-            let across = 50;
-            let down = 50;
+            
             let container = document.getElementById('container');
-            boxheight = container.offsetWidth / across;
-            container.style.gridTemplateColumns = `repeat(${across}, 1fr)`;
-            container.style.gridTemplateRows = `repeat(${across}, 1fr)`;
-            let divs = [];
+            makegrid(20,20);
+            //start makegrid
+            function makegrid(across, down) {
+                boxheight = container.offsetWidth / across;
+                container.style.gridTemplateColumns = `repeat(${across}, 1fr)`;
+                container.style.gridTemplateRows = `repeat(${across}, 1fr)`;
+                let divs = [];
             
-            for (let i=1; i <= down; i++) {
+                for (let i=1; i <= down; i++) {
                 
-                for (let j=1; j <= across; j++) {
+                    for (let j=1; j <= across; j++) {
                     
-                    let temp = document.createElement("div");
-                    temp.style.borderStyle = "solid";
-                    temp.style.borderWidth = ".25px";
-                    temp.style.height = `${boxheight}px`;
-                    temp.style.gridArea = `${j} / ${i} / span 1 / span 1`;
-                    temp.id = `row${j}col${i}`;
-                    
-                    temp.addEventListener("mouseenter", function(e) {
-                        temp.classList.add("filled")
-                    });
+                        let temp = document.createElement("div");
+                        temp.style.borderStyle = "solid";
+                        temp.style.borderWidth = ".25px";
+                        temp.style.height = `${boxheight}px`;
+                        temp.style.gridArea = `${j} / ${i} / span 1 / span 1`;
+                        temp.id = `row${j}col${i}`;
+                        //temp.style.opacity = 0;
+                        temp.addEventListener("mouseenter", function(e) {
+                            //temp.classList.add("filled")
+                            temp.style.backgroundColor = randColor();
+
+                        });
 
 
-                    container.appendChild(temp);
+                        container.appendChild(temp);
                     
-                }
+                    }
+                };
             };
-            
+
+            // end make grid
             erase = document.getElementById("erase");
             erase.onclick = function(){
-                //remove all filled classes
+                //This section wasn't even necessary but was fun to learn.
+                //filleddivs = document.getElementsByClassName("filled");
+                //for (let i=filleddivs.length-1; i >= 0; i--) {
+                //    filleddivs[i].classList.remove("filled");
+                //}
+
+                container.innerHTML = "";
+                //ask user grid size
+                gridsize = prompt("Select the number of divs across");
+                makegrid(gridsize,gridsize);
             };
 
+            function randColor() {
+                number = Math.floor(Math.random() * 16777216);
+                hexString = number.toString(16);
+                while (hexString.length < 6) {
+                    hexString = "0" + hexString;
+                };
+                return "#" + hexString;
+            }
 
             
         </script>
