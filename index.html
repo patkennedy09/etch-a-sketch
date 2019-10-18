@@ -31,11 +31,14 @@
                         temp.style.height = `${boxheight}px`;
                         temp.style.gridArea = `${j} / ${i} / span 1 / span 1`;
                         temp.id = `row${j}col${i}`;
-                        //temp.style.opacity = 0;
+                        temp.style.opacity = "0";
                         temp.addEventListener("mouseenter", function(e) {
                             //temp.classList.add("filled")
                             temp.style.backgroundColor = randColor();
-
+                            current = Number(temp.style.opacity);
+                            next = (current + .1).toString();
+                            temp.style.opacity = next;
+                            console.log(next);
                         });
 
 
